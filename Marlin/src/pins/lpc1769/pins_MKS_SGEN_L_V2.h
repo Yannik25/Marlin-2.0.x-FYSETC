@@ -26,7 +26,6 @@
  */
 
 #if NOT_TARGET(MCU_LPC1769)
->>>>>>> Stashed changes
   #error "Oops! Make sure you have the LPC1769 environment selected in your IDE."
 #endif
 
@@ -40,11 +39,7 @@
   //#define SDCARD_EEPROM_EMULATION
   //#define I2C_EEPROM                            // AT24C32
   #define FLASH_EEPROM_EMULATION
-<<<<<<< Updated upstream
   #define MARLIN_EEPROM_SIZE              0x1000  // 4KB
-=======
-  #define MARLIN_EEPROM_SIZE 0x1000               // 4KB
->>>>>>> Stashed changes
 #endif
 
 //
@@ -168,11 +163,7 @@
    * Hardware serial communication ports.
    * If undefined software serial is used according to the pins below
    */
-<<<<<<< Updated upstream
   //#define X_HARDWARE_SERIAL  Serial1
-=======
-  //#define X_HARDWARE_SERIAL  Serial
->>>>>>> Stashed changes
   //#define X2_HARDWARE_SERIAL Serial1
   //#define Y_HARDWARE_SERIAL  Serial1
   //#define Y2_HARDWARE_SERIAL Serial1
@@ -199,11 +190,7 @@
   #define E1_SERIAL_RX_PIN                 P1_17
 
   // Reduce baud rate to improve software serial reliability
-<<<<<<< Updated upstream
   #define TMC_BAUD_RATE                    19200
-=======
-  #define TMC_BAUD_RATE 19200
->>>>>>> Stashed changes
 #endif // HAS_TMC_UART
 
 //
@@ -220,7 +207,7 @@
 //
 #define HEATER_BED_PIN                     P2_05
 #define HEATER_0_PIN                       P2_07
-<<<<<<< Updated upstream
+
 #if HAS_MULTI_HOTEND
   #ifndef HEATER_1_PIN
     #define HEATER_1_PIN                   P2_06
@@ -235,29 +222,12 @@
 #endif
 #ifndef FAN1_PIN
   #define FAN1_PIN                         P1_04  // FAN2
-=======
-#if HOTENDS == 1
-  #ifndef FAN1_PIN
-    #define FAN1_PIN                       P2_06
-  #endif
-#else
-  #ifndef HEATER_1_PIN
-    #define HEATER_1_PIN                   P2_06
-  #endif
-#endif
-#ifndef FAN_PIN
-  #define FAN_PIN                          P2_04
-#endif
-#ifndef FAN2_PIN
-  #define FAN2_PIN                         P1_04
->>>>>>> Stashed changes
 #endif
 
 //
 // Misc. Functions
 //
 #define LED_PIN                            P1_18  // Used as a status indicator
-<<<<<<< Updated upstream
 
 //
 // RGB LED
@@ -277,27 +247,17 @@
   #define LED3_PIN                         P1_20
   #define LED4_PIN                         P1_21
 #endif
-=======
-#define LED2_PIN                           P1_19
-#define LED3_PIN                           P1_20
-#define LED4_PIN                           P1_21
->>>>>>> Stashed changes
 
 /**
  *                _____                                            _____
  * (BEEPER) 1.31 | · · | 1.30 (BTN_ENC)          (MISO)       0.8 | · · | 0.7  (SD_SCK)
  * (LCD_EN) 0.18 | · · | 0.16 (LCD_RS)           (BTN_EN1)   3.25 | · · | 0.28 (SD_CS2)
-<<<<<<< Updated upstream
  * (LCD_D4) 0.15 | · · | 0.17 (LCD_D5)            (BTN_EN2)  3.26 | · · | 0.9 (SD_MOSI)
-=======
- * (LCD_D4) 0.15 | · ·| 0.17 (LCD_D5)            (BTN_EN2)   3.26 | · ·|  0.9 (SD_MOSI)
->>>>>>> Stashed changes
  * (LCD_D6)  1.0 | · · | 1.22 (LCD_D7)           (SD_DETECT) 0.27 | · · | RST
  *           GND | · · | 5V                                   GND | · · | NC
  *                -----                                            -----
  *                EXP1                                             EXP2
  */
-<<<<<<< Updated upstream
 #if IS_TFTGLCD_PANEL
 
   #if ENABLED(TFTGLCD_PANEL_SPI)
@@ -308,17 +268,11 @@
 
 #elif HAS_WIRED_LCD
 
-=======
-#if HAS_SPI_LCD
->>>>>>> Stashed changes
   #define BEEPER_PIN                       P1_31
   #define BTN_ENC                          P1_30
 
   #if ENABLED(CR10_STOCKDISPLAY)
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
     #define LCD_PINS_RS                    P1_00
 
     #define BTN_EN1                        P0_18
@@ -346,7 +300,6 @@
       #define LCD_PINS_D7                  P1_22
       #define KILL_PIN                     -1     // NC
 
-<<<<<<< Updated upstream
     #elif HAS_SPI_TFT                             // Config for Classic UI (emulated DOGM) and Color UI
       #define TFT_CS_PIN                   P1_00
       #define TFT_A0_PIN                   P1_22
@@ -366,39 +319,13 @@
       #define LCD_PINS_ENABLE              -1
       #define LCD_PINS_RS                  -1
 
-      // XPT2046 Touch Screen calibration
-      #if ENABLED(TFT_CLASSIC_UI)
-        #ifndef XPT2046_X_CALIBRATION
-          #define XPT2046_X_CALIBRATION   -11386
-        #endif
-        #ifndef XPT2046_Y_CALIBRATION
-          #define XPT2046_Y_CALIBRATION     8684
-        #endif
-        #ifndef XPT2046_X_OFFSET
-          #define XPT2046_X_OFFSET           689
-        #endif
-        #ifndef XPT2046_Y_OFFSET
-          #define XPT2046_Y_OFFSET          -273
-        #endif
-      #elif ENABLED(TFT_COLOR_UI)
-        #ifndef XPT2046_X_CALIBRATION
-          #define XPT2046_X_CALIBRATION   -17089
-        #endif
-        #ifndef XPT2046_Y_CALIBRATION
-          #define XPT2046_Y_CALIBRATION    11424
-        #endif
-        #ifndef XPT2046_X_OFFSET
-          #define XPT2046_X_OFFSET          1044
-        #endif
-        #ifndef XPT2046_Y_OFFSET
-          #define XPT2046_Y_OFFSET          -365
-        #endif
-
-        #define TFT_BUFFER_SIZE             2400
+      #ifndef TFT_BUFFER_SIZE
+        #define TFT_BUFFER_SIZE             1200
+      #endif
+      #ifndef TFT_QUEUE_SIZE
+        #define TFT_QUEUE_SIZE              6144
       #endif
 
-=======
->>>>>>> Stashed changes
     #else                                         // !MKS_12864OLED_SSD1306
 
       #define LCD_PINS_RS                  P0_16
@@ -441,14 +368,15 @@
           #define DOGLCD_A0                P1_00
         #endif
 
-<<<<<<< Updated upstream
         #if IS_ULTIPANEL
-=======
-        #if ENABLED(ULTIPANEL)
->>>>>>> Stashed changes
           #define LCD_PINS_D5              P0_17
           #define LCD_PINS_D6              P1_00
           #define LCD_PINS_D7              P1_22
+
+          #if ENABLED(REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER)
+            #define BTN_ENC_EN       LCD_PINS_D7  // Detect the presence of the encoder
+          #endif
+
         #endif
 
       #endif // !FYSETC_MINI_12864
@@ -457,11 +385,7 @@
 
   #endif // !CR10_STOCKDISPLAY
 
-<<<<<<< Updated upstream
 #endif // HAS_WIRED_LCD
-=======
-#endif // HAS_SPI_LCD
->>>>>>> Stashed changes
 
 #ifndef SDCARD_CONNECTION
   #define SDCARD_CONNECTION              ONBOARD
